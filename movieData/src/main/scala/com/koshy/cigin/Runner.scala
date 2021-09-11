@@ -3,7 +3,7 @@ package com.koshy.cigin
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.col
 
-object Runner extends DataFilters {
+object Runner extends DataFilters with MovieMetrics {
 
   def main(args: Array[String]) {
     val spark = SparkSession.builder()
@@ -24,7 +24,11 @@ object Runner extends DataFilters {
       .csvReader("archive/ratings.csv",
         List("movieId", "rating"),
         Schema.Ratingschema)
-    
-    
+
+    val groupDf = movieMetaDataDf.join(ratingsDf,col("movieId") === col("id"), "left")
+      .drop("movieId")
+      .transform(ratioMetric)
+      .transform(ratioMetric)
+ 
   }
 }
