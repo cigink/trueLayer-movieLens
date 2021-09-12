@@ -8,7 +8,6 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 class FileReader(spark: SparkSession) {
   
   def csvReader(filePath: String, fields: Seq[String], schema:StructType): DataFrame = {
-
     spark.read
       .option("header", "true") // Use first line of all files as header
       .option("quote", "\"")
@@ -25,7 +24,7 @@ class FileReader(spark: SparkSession) {
       .option("rowTag", "doc")
       .schema(schema)
       .xml(filePath)
-      .filter(col("title").isNull)
+      .filter(col("title").isNull === false)
   }
 
 }

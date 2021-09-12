@@ -15,5 +15,5 @@ val commonSettings = Seq(
 )
 
 
-lazy val movieData = Project(id = "movie-data-pipeline", base = file("movieData")).settings(commonSettings: _*)
-lazy val dbUpdater = Project(id = "db-updater", base = file("dbUpdate")).settings(commonSettings: _*)
+lazy val movieData = Project(id = "movie-data-pipeline", base = file("movieData")).settings(commonSettings: _*).dependsOn(movieDataIo)
+lazy val movieDataIo = Project(id = "movie-data-pipeline-io", base = file("movieDataIo")).settings(commonSettings: _*)

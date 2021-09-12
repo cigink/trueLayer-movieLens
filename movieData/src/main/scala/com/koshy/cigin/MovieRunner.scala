@@ -3,7 +3,7 @@ package com.koshy.cigin
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.{col, regexp_replace}
 
-object Runner extends DataFilters with MovieMetrics {
+object MovieRunner extends DataFilters with MovieMetrics {
 
   def main(args: Array[String]) {
     val spark = SparkSession.builder()
@@ -22,6 +22,7 @@ object Runner extends DataFilters with MovieMetrics {
       .transform(budgetFilter)
       .transform(revenueFilter)
     
+    
     val ratingsDf = reader
       .csvReader("archive/ratings.csv",
         List("movieId", "rating"),
@@ -33,13 +34,11 @@ object Runner extends DataFilters with MovieMetrics {
     val movieMetaRatingDf = movieMetaDataDf.join(ratingsDf, Seq("id"), "left")
       .drop("movieId")
       .transform(ratioMetric)
-    
+
     
     val wikiDf = reader.xmlReader("archive/enwiki-latest-abstract 2.xml", Schema.wikiSchema)
       .withColumn("title", regexp_replace(col("title"), "Wikipedia: ", ""))
 
-    val movieWithWikiDf = movieMetaRatingDf.join(wikiDf, Seq("title"), "left") 
-    
-    movieWithWikiDf.show( false)
+    val movieWithWikiDf = movieMetaRatingDf.join(wikiDf, Seq("title"), "left")
   }
 }
