@@ -9,6 +9,8 @@ trait MovieMetrics {
     df.groupBy("id")
       .agg(expr("avg(rating)")
         .as("avg_rating"))
+      .drop("rating")
+      .withColumnRenamed("avg_rating", "rating")
   }
   
   def ratioMetric(df:DataFrame): DataFrame = {

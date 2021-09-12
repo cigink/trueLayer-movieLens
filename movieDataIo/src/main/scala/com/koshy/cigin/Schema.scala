@@ -45,4 +45,18 @@ object Schema {
       StructField("vote_average", StringType),
       StructField("vote_count", StringType)
     ))
+
+  val outputSchema: StructType = StructType(
+    List(
+      StructField("id", StringType),
+      StructField("title", StringType),
+      StructField("budget", IntegerType),
+      StructField("year", StringType),
+      StructField("revenue", StringType),
+      StructField("rating", StringType),
+      StructField("ratio", StringType),
+      StructField("production_companies", StringType),
+      StructField("url", StringType),
+      StructField("abstract", StringType)
+    ))
 }

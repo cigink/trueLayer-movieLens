@@ -17,7 +17,6 @@ trait DataFilters {
   def extractYear(df: DataFrame): DataFrame = {
     df.withColumn("year", year(to_timestamp(col("release_date"),"yyyy-mm-dd")))
       .drop("release_date")
-      .withColumnRenamed("year","release_date")
   }
   
   def extractProductionCompanies(df:DataFrame):DataFrame = {

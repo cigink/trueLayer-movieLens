@@ -10,12 +10,12 @@ object MovieRunner extends DataFilters with MovieMetrics {
       .appName("movie_lens")
       .master("local")
       .getOrCreate()
-    
+
     val reader = new FileReader(spark)
-    
+
     val movieMetaDataDf = reader
       .csvReader("archive/movies_metadata.csv",
-        List("id","title", "budget", "release_date", "revenue", "production_companies"),
+        List("id", "title", "budget", "release_date", "revenue", "production_companies"),
         Schema.movieSchema)
       .transform(extractYear)
       .transform(extractProductionCompanies)
@@ -29,16 +29,21 @@ object MovieRunner extends DataFilters with MovieMetrics {
         Schema.ratingSchema)
       .withColumnRenamed("movieId", "id")
       .transform(avgRatingMetric)
-    
-    
+
+
     val movieMetaRatingDf = movieMetaDataDf.join(ratingsDf, Seq("id"), "left")
       .drop("movieId")
       .transform(ratioMetric)
 
-    
+
     val wikiDf = reader.xmlReader("archive/enwiki-latest-abstract 2.xml", Schema.wikiSchema)
       .withColumn("title", regexp_replace(col("title"), "Wikipedia: ", ""))
 
-    val movieWithWikiDf = movieMetaRatingDf.join(wikiDf, Seq("title"), "left")
+    val movieWithWikiDf = movieMetaRatingDf
+      .join(wikiDf, Seq("title"), "left")
+      .select(Schema.outputSchema.map(field => col(field.name)): _*)
+
+    DbWriter.writeTodb(movieWithWikiDf)
+  
   }
 }
