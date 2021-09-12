@@ -1,7 +1,8 @@
 package com.koshy.cigin
 
 import org.apache.spark.sql.DataFrame
-import org.apache.spark.sql.functions.{col, to_timestamp, year}
+import org.apache.spark.sql.functions.{col, concat_ws, from_json, to_timestamp, udf, year}
+import org.apache.spark.sql.types.{ArrayType, StringType, StructField, StructType}
 
 trait DataFilters {
   
@@ -20,7 +21,13 @@ trait DataFilters {
   }
   
   def extractProductionCompanies(df:DataFrame):DataFrame = {
-    ???
+    df.withColumn("jsonData",
+      from_json(col("production_companies"),
+        ArrayType(StructType(Array(StructField("name", StringType)))))
+        .getField("name"))
+      .drop("production_companies")
+      .withColumn("production_companies", concat_ws(", ", col("jsonData")))
+      .drop("jsonData")
   }
 }
 

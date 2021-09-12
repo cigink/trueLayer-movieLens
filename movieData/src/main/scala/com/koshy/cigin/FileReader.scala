@@ -25,6 +25,7 @@ class FileReader(spark: SparkSession) {
       .option("rowTag", "doc")
       .schema(schema)
       .xml(filePath)
+      .filter(col("title").isNull)
   }
 
 }

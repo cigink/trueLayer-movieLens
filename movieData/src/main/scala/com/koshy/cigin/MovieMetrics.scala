@@ -6,7 +6,7 @@ import org.apache.spark.sql.functions.{col, expr}
 trait MovieMetrics {
   
   def avgRatingMetric(df: DataFrame): DataFrame = {
-    df.groupBy("movieId")
+    df.groupBy("id")
       .agg(expr("avg(rating)")
         .as("avg_rating"))
   }
