@@ -28,7 +28,7 @@ object MovieRunner extends DataFilters with MovieMetrics {
         List("movieId", "rating"),
         Schema.ratingSchema)
       .withColumnRenamed("movieId", "id")
-      .transform(avgRatingMetric)
+      .transform(avgRatingMetric).cache()
 
 
     val movieMetaRatingDf = movieMetaDataDf.join(ratingsDf, Seq("id"), "left")
@@ -42,8 +42,9 @@ object MovieRunner extends DataFilters with MovieMetrics {
     val movieWithWikiDf = movieMetaRatingDf
       .join(wikiDf, Seq("title"), "left")
       .select(Schema.outputSchema.map(field => col(field.name)): _*)
+      .sort(col("ratio").desc)
 
-    DbWriter.writeTodb(movieWithWikiDf)
+    DbWriter.writeTodb(movieWithWikiDf.limit(1000))
   
   }
 }
