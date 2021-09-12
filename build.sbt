@@ -11,7 +11,7 @@ val commonSettings = Seq(
   libraryDependencies += "org.apache.spark" %% "spark-core" % "2.4.4",
   libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.4.4",
   libraryDependencies += "com.databricks" %% "spark-csv" % "1.5.0",
-  libraryDependencies +="com.databricks" %% "spark-xml" % "0.4.1"
+  libraryDependencies += "com.databricks" %% "spark-xml" % "0.12.0"
 )
 
 

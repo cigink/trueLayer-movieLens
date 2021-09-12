@@ -1,5 +1,6 @@
 package com.koshy.cigin
 
+import com.databricks.spark.xml.XmlDataFrameReader
 import org.apache.spark.sql.functions.col
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.{DataFrame, SparkSession}
@@ -15,6 +16,15 @@ class FileReader(spark: SparkSession) {
       .schema(schema)
       .csv(filePath)
       .select(fields.map(col(_)):_*)
+  }
+
+  def xmlReader(filePath: String, schema:StructType): DataFrame = {
+    spark.read
+      .format("com.databricks.spark.xml")
+      .option("rootTag", "feed")
+      .option("rowTag", "doc")
+      .schema(schema)
+      .xml(filePath)
   }
 
 }

@@ -3,7 +3,7 @@ package com.koshy.cigin
 import org.apache.spark.sql.types.{DoubleType, FloatType, IntegerType, StringType, StructField, StructType}
 
 object Schema {
-    val ratingschema: StructType = StructType(
+    val ratingSchema: StructType = StructType(
       List(
         StructField("userId", StringType),
         StructField("movieId", StringType),
@@ -11,7 +11,14 @@ object Schema {
         StructField("timestamp", StringType)
       ))
 
-  val movieschema: StructType = StructType(
+  val wikiSchema: StructType = StructType(
+    List(
+      StructField("title", StringType),
+      StructField("url", StringType),
+        StructField("abstract", StringType)
+    ))
+
+  val movieSchema: StructType = StructType(
     List(
       StructField("adult", StringType),
       StructField("belongs_to_collection", StringType),
