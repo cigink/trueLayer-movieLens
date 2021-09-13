@@ -43,7 +43,7 @@ object MovieRunner {
       .transform(ratioMetric)
 
     logger.info("Reading wiki data")
-    val wikiDf = reader.xmlReader("archive/enwiki-latest-abstract 2.xml", Schema.wikiSchema)
+    val wikiDf = reader.xmlReader("archive/enwiki-latest-abstract.xml", Schema.wikiSchema)
       .withColumn("title", regexp_replace(col("title"), "Wikipedia: ", ""))
     
     logger.info("Joining moviewithRatingData to Wiki data")
