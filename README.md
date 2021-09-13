@@ -8,6 +8,11 @@ Note: The build and run will require some time as the image is quite big and the
 
 ## View Results
 Once the docker is up and running, it will require some time to produce the results.
+
+Results will only be visible in the database once you have this message in the console:
+
+`true-layer-challenge_app_1 exited with code 0`
+
 Please note that the logger isn't working as expected and you may not find printed logs,
 please wait for some time after you start the application to find data in the database.
 
@@ -52,6 +57,10 @@ and can be found in the deploy folder
 
 Generally with a decent internet connection, the project approximately takes 15 mins.
 
+Results will only be visible in the database once you have this message in the console:
+
+`true-layer-challenge_app_1 exited with code 0`
+
 if you encounter `No space left` error please goto
 
 `Docker` -> `Prefernces` -> `Resources` -> `Increase the memory inder advanced tab`
@@ -60,4 +69,5 @@ In case of any other error contact me at `cigink@gmail.com`
 
 ## Improvements
 1. Further in this project, I would like to divide it into separate modules 
-2. Write more tests
+2. Fix the logger to ensure timely messages
+3. Write more tests
