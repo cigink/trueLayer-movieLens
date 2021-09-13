@@ -17,4 +17,4 @@ RUN gunzip enwiki-latest-abstract.xml.gz
 
 WORKDIR /app
 
-#CMD spark-submit --class "org.koshy.cigin.MovieRunner" --master local src/main/docker/deploy/true-layer-challenge-assembly-1.0.jar
+CMD spark-submit --class "org.koshy.cigin.MovieRunner" --master local src/main/docker/deploy/true-layer-challenge-assembly-1.0.jar

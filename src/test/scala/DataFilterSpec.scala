@@ -11,37 +11,21 @@ class DataFilterSpec extends AnyFlatSpec with Matchers {
     .getOrCreate()
 
   "Budget" should "be greater than 10000" in {
-    val input = spark.read.csv("")
-    val actualDf = MovieMetrics.avgRatingMetric(input)
-    val expectedDf = spark.read.csv("")
-    
-    assert(actualDf == expectedDf)
+    ???
   }
 
   "Revenue" should "be greater than 400" in {
-    val input = spark.read.csv("")
-    val actualDf = MovieMetrics.avgRatingMetric(input)
-    val expectedDf = spark.read.csv("")
-
-    assert(actualDf == expectedDf)
+    ???
 
   }
 
   "Year" should "be extracted from release_date" in {
-    val input = spark.read.csv("")
-    val actualDf = MovieMetrics.avgRatingMetric(input)
-    val expectedDf = spark.read.csv("")
-
-    assert(actualDf == expectedDf)
+    ???
 
   }
 
   "Production company" should "be extracted the array" in {
-    val input = spark.read.csv("")
-    val actualDf = MovieMetrics.avgRatingMetric(input)
-    val expectedDf = spark.read.csv("")
-
-    assert(actualDf == expectedDf)
+    ???
 
   }
 
