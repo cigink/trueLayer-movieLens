@@ -12,6 +12,8 @@ idePackagePrefix := Some("org.koshy.cigin")
   libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.4.4" % "provided"
   libraryDependencies += "com.databricks" %% "spark-xml" % "0.12.0"
   libraryDependencies += "org.postgresql" % "postgresql" % "42.2.23"
+  libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.4"
+
 
 
 

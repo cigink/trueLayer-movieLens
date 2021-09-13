@@ -1,10 +1,13 @@
 package org.koshy.cigin
 
+import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.DataFrame
 
 import java.sql.{Connection, DriverManager}
 
 object DbWriter {
+
+  val logger = Logger("DbWriter")
 
   val driver = "org.postgresql.Driver"
   val url = "jdbc:postgresql://host.docker.internal:5432/postgres"
@@ -29,13 +32,14 @@ object DbWriter {
     var connection:Connection = null
 
     try {
+      logger.info("Creating table in db")
       // make the connection
       Class.forName(driver)
       connection = DriverManager.getConnection(url, username, password)
 
       // create the statement, and run the select query
       val statement = connection.createStatement()
-      statement.executeQuery(
+      statement.executeUpdate(
         "CREATE table if not exists public.moviewiki" +
         "(" +
         "id int PRIMARY KEY," +
