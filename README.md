@@ -56,8 +56,8 @@ if you encounter `No space left` error please goto
 
 `Docker` -> `Prefernces` -> `Resources` -> `Increase the memory inder advanced tab`
 
-Incase of any other error contact me at `cigink@gmail.com`
+In case of any other error contact me at `cigink@gmail.com`
 
 ## Improvements
-1. Further in this project, I would like to divide into seperate modules 
+1. Further in this project, I would like to divide it into separate modules 
 2. Write more tests
