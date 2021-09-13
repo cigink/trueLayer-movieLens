@@ -3,14 +3,14 @@ package org.koshy.cigin
 import DataFilters.{budgetFilter, extractProductionCompanies, extractYear, revenueFilter}
 import MovieMetrics.{avgRatingMetric, ratioMetric}
 
-import com.typesafe.scalalogging.Logger
+import com.typesafe.scalalogging.{LazyLogging, Logger}
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.{col, regexp_replace}
 
-object MovieRunner {
-
-  val logger = Logger("MovieRunner")
-
+object MovieRunner extends LazyLogging {
+  
+  logger.info("App is starting")
+  
   def main(args: Array[String]) {
     val spark = SparkSession.builder()
       .appName("movie_lens")

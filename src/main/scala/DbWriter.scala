@@ -1,14 +1,12 @@
 package org.koshy.cigin
 
-import com.typesafe.scalalogging.Logger
+import com.typesafe.scalalogging.LazyLogging
 import org.apache.spark.sql.DataFrame
 
 import java.sql.{Connection, DriverManager}
 
-object DbWriter {
-
-  val logger = Logger("DbWriter")
-
+object DbWriter extends LazyLogging {
+  
   val driver = "org.postgresql.Driver"
   val url = "jdbc:postgresql://host.docker.internal:5432/postgres"
   val username = "postgres"
