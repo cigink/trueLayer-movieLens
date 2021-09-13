@@ -20,7 +20,7 @@ You can view the result in adminer, which will be running in your localhost on p
 
 `System : PostgreSQL`
 
-`Server : db`
+`Server : postgres`
 
 `username: postgres`
 
